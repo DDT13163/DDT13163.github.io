@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Ứng dụng xem tin tức</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<style>
+  h1 {
+    text-align: center;
+    background-color: orangered;
+  }
+  #div1 {
+    display: none;
+    position: fixed;
+    padding-top: 100px;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+  }
+  #div2 {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 30%;
+  }
+  #donglai {
+    float: right;
+    border: none;
+  }
+
+  #donglai:hover {
+    background-color: red;  
+  }
+  a {font-size: larger;
+     }
+  #div3 {display: flex;
+         flex-direction: row;}
+  #div4 {flex: 30%;
+         padding: 10px;} 
+  #div5 {flex: 70%;
+         padding: 20px;
+         line-height: 30px;
+         }
+  #loading {display: none;}              
+</style>
+<body>
+  <h1>My News <a href="#" style="text-decoration: none;" id="timkiem">&#128269;</a></h1>
+  <img id="loading" src="loading gif.gif">
+  <div id="div1">
+    <div id="div2">
+      <label for="Keywords"><b>Keywords</b></label>
+      <input type="text" id="nhapvao" placeholder="type here to search">
+      <button id="Search">Search</button>
+      <button id="donglai">&#10006;</button>
+    </div>
+  </div>
+  <div id="newsfeed">
+  </div>
+  <script>
+    $(document).ready(function() {
+      $("#timkiem").click(function() {
+        $("#div1").show();
+      });
+      $("#donglai").click(function() {
+        $("#div1").hide();
+        $("input#nhapvao").val("");
+      });
+      window.onclick = function(event) {
+       var modal = document.getElementById("div1"); 
+       if (event.target == modal) {
+       modal.style.display = "none";
+       $("input#nhapvao").val("");
+      }
+     }
+     fetch('https://gnews.io/api/v4/top-headlines?&lang=en&token=c6f51cd4888d08e783221b4a62101aa3')
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function(data) {
+          var content = '';
+          data["articles"].forEach(function(element) {
+            content += "<div id='div3'>";
+            content += "<div id='div4'><img  width='100%' src='" + element.image + "'></div>"
+            content += "<div id='div5'>" + "<strong>" + "<a href='" + element.url + "' target='_blank'>" + element.title  + "</a>" + "</strong>" + "<br>";
+            content += "<i>" + element.publishedAt + "</i>";
+            content += "<p>" + element.description + "</p>" + "</div></div>";
+          });
+          $("#newsfeed").html(content);
+        });
+      $("#Search").click(function() {
+       var keyword = $("input#nhapvao").val();
+       var url = "https://gnews.io/api/v4/search?q="+keyword+"&lang=en"+"&token=c6f51cd4888d08e783221b4a62101aa3";
+       $("img#loading").show();
+       fetch(url)
+       .then(function (response) {
+          return response.json();
+        })
+        .then(function (data) {
+          var content = '';
+          data["articles"].forEach(function(element) {
+            content += "<div id='div3'>";
+            content += "<div id='div4'><img  width='100%' src='" + element.image + "'></div>"
+            content += "<div id='div5'>" + "<strong>" + "<a href='" + element.url + "' target='_blank'>" + element.title  + "</a>" + "</strong>" + "<br>";
+            content += "<i>" + element.publishedAt + "</i>";
+            content += "<p>" + element.description + "</p>" + "</div></div>";
+          });
+          $("#newsfeed").html(content);
+          $("img#loading").hide();   
+      });
+    });   
+
+
+    });
+  </script>
+
+
+
+
+
+</body>
+
+</html>
