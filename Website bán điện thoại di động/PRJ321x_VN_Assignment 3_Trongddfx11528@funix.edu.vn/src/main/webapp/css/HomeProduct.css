@@ -1,0 +1,181 @@
+*{
+	box-sizing: border-box;
+}
+
+body {
+	font-family: Arial;
+	padding: 10px;
+	background: white;
+}
+
+/* header/blog title */
+.header {
+	padding: 30px;
+	text-align: center;
+	background-color: #26004d;
+}
+
+.header h1 {
+	font-size: 50px;
+	color: #ff0000;
+}
+
+/* style the top navigation bar */
+.topnav {
+	overflow: hidden;
+	background-color: #003366;
+}
+
+.topnav a {
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+}
+
+/* change color on hover */
+.topnav a:hover {
+	background-color: orange;
+	color: black;
+}
+
+.topnav .form1 {
+   float: right;
+   margin-top: 13px;
+   border: none;
+}
+
+.topnav input[type=text] {
+   border: none;
+   font-size: 17px;
+}
+
+.topnav .form1 button {
+   border: none;
+   font-size: 17px;
+   cursor: pointer;
+   margin-right: 16px;
+}
+
+.topnav .form1 button:hover {
+   background-color: orange;
+   color: black;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 0px 5px;
+}
+/* creat two unequal columns that floats next to each other */
+/* left column */
+.leftcolumn {
+	flex: 75%;
+	max-width: 75%;
+	padding: 10px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.leftcolumn .div1 img {
+   margin-top: 20px;
+   width: 100%;
+}	
+
+.rightcolumn {
+   
+   flex: 25%;
+   max-width: 25%;
+   text-align: center;
+   padding: 10px;
+}
+
+.div1 {
+   border-radius: 20px;
+   border: 2px solid #f2f2f2;
+   margin: 10px 10px;
+   text-align: center;
+   flex: 30%;
+   max-width: 30%;
+}
+
+h3 {
+   color: red;
+}
+
+/* footer */
+.footer {
+	padding: 20px;
+	text-align: center;
+	background: #26004d;
+	margin-top: 20px;
+	color: white;
+}
+.ilbl {
+	display: inline-block;
+	padding: 0px 60px;
+}
+
+.divPro {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.divDetail1 {
+	flex: 30%;
+	max-width: 30%;	
+}
+
+.divDetail2 {
+	flex: 30%;
+	max-width: 30%;
+	padding: 0px 50px;
+	margin: 0px 100px;	
+}
+
+/* responsive layout - when the screen is less than 800px wide, make the two column stack on top of each other instead of next to each other */
+@media screen and (max-width: 890px) {
+    .leftcolumn {
+      flex: 65%;
+      max-width: 65%;
+    }
+    .rightcolumn {
+      flex: 35%;
+      max-width: 35%;
+    }	
+	.topnav a, .topnav .form1 button, .topnav input[type=text] {
+	   float: none;
+	   display: block;
+	   width: 100%;
+	   margin: 0;
+	   padding: 14px;
+	}
+	
+	.topnav .form1 {
+	   float: none;
+	}
+	
+	.topnav .form1 button {
+	   background-color: #003366;
+	   color: white;
+	}
+  }
+@media screen and (max-width: 700px) {
+    .leftcolumn {
+      flex: 60%;
+      max-width: 60%;
+    }
+    .rightcolumn {
+      flex: 40%;
+      max-width: 40%;
+    }   
+}
+@media screen and (max-width: 600px) {
+    .leftcolumn, .rightcolumn {
+     flex: 100%;
+	 max-width: 100%;
+	}	
+  }

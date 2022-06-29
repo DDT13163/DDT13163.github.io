@@ -1,0 +1,45 @@
+@charset "UTF-8";
+* {
+    box-sizing: border-box; 
+  }
+  .ip {
+       border-radius: 20px;
+       width:100px;
+       height:30px;
+       color:white;
+       background-color: #ff5c33;
+       border: #ff5c33;
+       margin-top: 6px;
+  }
+  
+  html, body {
+     height: 100%;
+     margin: 0;
+  }
+  
+  .flex-container {
+      display: flex;
+      flex-wrap: wrap;
+      height: 100%;     
+  }
+ 
+  .flex-right {
+      flex: 50%;
+      text-align: center;
+  }
+  
+  .flex-left {
+      flex: 50%;
+      background-color: #003366;
+  }
+  
+  .div1 {
+      text-align: center;
+      position: relative;
+      top: 35%;
+  }
+  
+  .div2 {
+      position: relative;
+      top: 30%;
+  }
